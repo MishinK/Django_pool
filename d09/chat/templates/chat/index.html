@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+ 	<table class='table'>
+    <th><h1>What chat room would you like to enter?</h1></th>
+	<tr><td><h2><a href="{% url 'room' 'politics' %}">Politics</a></h2></td></tr>
+	<tr><td><h2><a href="{% url 'room' 'economy' %}">Economy</a></h2></td></tr>
+	<tr><td><h2><a href="{% url 'room' 'only fan' %}">Only fan</a></h2></td></tr>
+	</table>
+</body>
+</html>

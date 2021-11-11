@@ -1,0 +1,32 @@
+{% extends 'ex03/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ex03/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+	<table>
+		<tr>
+    		<th>Title</th>
+    		<th>Episode number</th>
+    		<th>Opening crawl</th>
+    		<th>Producer</th>
+    		<th>Director</th>
+    		<th>Date</th>
+ 		</tr>
+	{% for movie in movies_lst %}
+    	<tr>
+        	{% for field in movie %}
+            	<td>
+                	{{ field }}
+            	</td>
+        	{% endfor %}
+    	</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

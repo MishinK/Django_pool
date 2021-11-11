@@ -1,0 +1,35 @@
+{% extends 'ex07/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ex07/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% block form %}{% endblock %}	
+	<table>
+		<tr>
+    		<th>Title</th>
+    		<th>Episode number</th>
+    		<th>Opening crawl</th>
+    		<th>Producer</th>
+    		<th>Director</th>
+    		<th>Date</th>
+			<th>Created</th>
+			<th>Updated</th>
+ 		</tr>
+	{% for movie in movies_lst %}
+    	<tr>
+        	{% for field in movie %}
+            	<td>
+                	{{ field }}
+            	</td>
+        	{% endfor %}
+    	</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

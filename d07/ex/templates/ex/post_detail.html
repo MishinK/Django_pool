@@ -1,0 +1,28 @@
+{% extends 'ex/base.html' %}
+ 
+{% block content %}
+<div>
+  <h1>{{ article.title }}</h1>
+  <div style="display: flex; justify-content: space-between">
+    <div><h3 style="display: inline-flex; color: rgb(125, 125, 125)">{{ article.author }}</h3>
+      <h5 style="display: inline-flex">- {{ article.created }}</h5>
+    </div>
+    {% if user.is_authenticated %}
+    <form class="form-group" action="{% url 'post_add_favourite' article.pk %}" method="POST" style="display: inline-flex; align-self: center" >
+      {% csrf_token %}
+	  <input class="btn btn-primary"  type="submit" value="Add to favorites">
+    </form>
+    {% endif %}
+  </div>
+  <hr />
+  <div class="lead">
+    <blockquote>{{ article.synopsis }}</blockquote>
+    <div>{{ article.content }}</div>
+  </div>
+</div>
+{% if user.is_authenticated and article.author == user %}
+ 	<a href="{% url 'post_edit' article.pk %}">+ Edit Blog Post</a>
+	<br>
+	<a href="{% url 'post_delete' article.pk %}">- Delete Blog Post</a>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,5 @@
+Django==3.2.3
+django-bootstrap3==15.0.0
+Pillow
+uwsgi
+gunicorn

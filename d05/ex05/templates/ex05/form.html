@@ -1,0 +1,9 @@
+{% extends 'ex05/display.html' %}
+{% block form %}
+    <form class="ui-form" role="form" action="post" method="POST">
+	    <div>Remove movie</div>
+		{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">remove</button>
+    </form>
+{% endblock %}

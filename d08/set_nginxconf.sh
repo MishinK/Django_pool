@@ -1,0 +1,1 @@
+ln -sf $PWD/nginx.conf /opt/homebrew/etc/nginx/servers/d08

@@ -1,0 +1,29 @@
+{% extends 'ex08/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ex08/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+	<table>
+		<tr>
+    		<th>Name</th>
+    		<th>Home world</th>
+    		<th>Climate</th>
+ 		</tr>
+	{% for movie in movies_lst %}
+    	<tr>
+        	{% for field in movie %}
+            	<td>
+                	{{ field }}
+            	</td>
+        	{% endfor %}
+    	</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'ex/base.html' %}
+ 
+ {% block title %}
+	Publications
+{% endblock %}
+
+{% block content %}
+<h1>Your publications</h1>
+<table class='table'>
+	<th>Title</th>
+	<th>Synopsis</th>
+	<th>Created</th>
+	<th>When</th>
+  {% for article in object_list %}
+  	{% if article.author == request.user %}
+	<tr>
+      <td><a href="{% url 'post_detail' article.pk %}">{{ article.title|truncatechars:20 }}</a></td>
+	  <td>{{ article.synopsis|truncatechars:20 }}</td>
+	  <td><small>{{ article.created }}</small></td>
+	  <td><small>{{ article.created|timesince}}</small></td>
+    </tr>
+	{% endif %}
+  {% endfor %}
+</table>
+
+{% endblock content %}

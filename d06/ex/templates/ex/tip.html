@@ -1,0 +1,69 @@
+<div class="display">
+    <form action="{% url 'tip' %}" method="post" class="form">
+       	{% csrf_token %}
+   		{{tipform.as_p}}
+		<button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<ul class="list-group">
+{% for tip in tips %}
+    <li class="list-group-item" style="margin-top: 10px; margin-bottom: 10px">
+    <div>
+		{% for group_for in request.user.groups.all%}
+    	{% if group_for.name == 'down' or user == tip.author or user.is_superuser or user.is_staff%}
+          	<button type="button" class="btn close" data-toggle="modal" data-target="#deletetip-{{ tip.id }}">❌</button>
+          	
+			<div class="modal fade" id="deletetip-{{ tip.id }}" tabindex="-1" role="dialog" aria-labelledby="deletetip-{{ tip.id }}Label" aria-hidden="true">
+            	<div class="modal-dialog" role="document">
+              		<div class="modal-content">
+                		<div class="modal-header" style="display: flex; flex-direction: row">
+                  			<h5 class="modal-title inline" style="width: 100%" id="deletetip-{{ tip.id }}Label"> Delete yore tip?</h5>
+                		</div>
+
+                		<form action="{% url 'tip' %}" method="post" class="form">
+						{% csrf_token %}
+				  		{{tip.deleteform }}
+                		<div class="modal-footer">
+                    		<button type="submit" class="btn btn-primary">Yes</button>
+                    		<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                		</div>
+                		</form>
+              		</div>
+            	</div>
+          	</div>
+		{% endif %}
+		{% endfor %}
+        <h5>Author: {{ tip.author }}</h5>
+        <p>{{ tip.content }}</p>
+        
+		<div style="display: flex; justify-content: space-between;">
+        <small >{{ tip.date }}</small>
+          <p>
+            <span style="cursor: pointer;" onclick="document.getElementById('{{tip.id}}-upvote').click()">❤️‍🩹{{tip.up_votes.count}}</span>
+            {{' / '}}
+            <span style="cursor: pointer;" onclick="document.getElementById('{{tip.id}}-downvote').click()">💔{{tip.down_votes.count}}</span>
+          </p>
+        </div>
+    <form action="{% url 'tip' %}" method="post" class="form" style="display: none">
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="put" id="_method" />
+        <input type="hidden" name="id" value="{{ tip.id }}" />
+        <input type="checkbox" hidden="true" name="type" id="type" checked />
+        <input hidden="true" type="submit" class="btn btn-primary" id="{{tip.id}}-upvote" />
+    </form>
+	{% for group_for in request.user.groups.all %}
+    	{% if group_for.name == 'down' %}
+   		 <form action="{% url 'tip' %}" method="post" class="form" style="display: none" >
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="put" id="_method" />
+        <input type="hidden" name="id" value="{{ tip.id }}" />
+        <input type="checkbox" hidden="true" name="type" id="type" />
+        <input hidden="true" type="submit" class="btn btn-primary" id="{{tip.id}}-downvote" />
+    	</form>
+		{% endif %}
+	{% endfor %}
+      </div>
+    </li>
+{% endfor %}
+</ul>

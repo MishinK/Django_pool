@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load bootstrap3 %}
+	<script src="{% bootstrap_jquery_url %}"></script>
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+ 
+    {% block title %}
+        <title>Home</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+	{% include 'ex/nav.html' %}
+        <div class="jumbotron">
+            {% block content %}
+			
+			    {% if request.user.is_authenticated %}
+                	{% include 'ex/tip.html' %}
+            	{% else %}
+                	<div class="display3 lead">I'm happy to see you again !</div>
+            	{% endif %}
+               
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

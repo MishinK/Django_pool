@@ -1,0 +1,22 @@
+{% extends 'ex/base.html' %} 
+
+{% block title %}
+	Favorite list
+{% endblock %}
+
+{% block content %} 
+<h1>Your favorites</h1>
+
+<table class='table'>
+	<th>Title</th>
+	<th>Author</th>
+	{% for favorite in object_list %}
+		<tr>
+	    	<td><a href="{% url 'post_detail' favorite.article.id %}">{{ favorite.article.title|truncatechars:20 }}</a></td>
+	    	<td>{{ favorite.user }}</td>
+	    </tr>
+	{% endfor %}
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'ex09/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ex09/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if people %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Homeworld</th>
+        <th>Climate</th>
+      </tr>
+        {% for human in people %}
+          <tr>
+              <td>{{ human.name }}</td>
+              <td>{{ human.homeworld__name }}</td>
+              <td>{{ human.homeworld__climate }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    No data available, please use the following command line before use:
+	<br>
+    python3 manage.py loaddata data/ex09_initial_data.json
+{% endif %}
+{% endblock %}

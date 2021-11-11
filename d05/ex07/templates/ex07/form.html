@@ -1,0 +1,9 @@
+{% extends 'ex07/display.html' %}
+{% block form %}
+    <form class="ui-form" role="form" action="post" method="POST">
+	    <div>Update movie</div>
+		{% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">update</button>
+    </form>
+{% endblock %}

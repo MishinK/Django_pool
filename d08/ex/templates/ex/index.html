@@ -1,0 +1,33 @@
+{% load static %} {% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="{% bootstrap_jquery_url %}"></script>
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+    <title>Art Gallery</title>
+  </head>
+  <body style="background-image: url({% static 'ex/bacgraund.jpg' %})">
+    <div class="container">
+    	<div class="row">
+      		{% bootstrap_messages %} 
+	  		{% for image in files %}
+      		<div class="col-sm-6 col-md-4">
+        		<div class="thumbnail">
+          		<img src="{{image.img.url}}" alt="{{image.title}}"/>
+          		<div class="caption"> <h4 >{{image.title}}</h4></div>
+        		</div>
+    		</div>
+      		{% endfor %}
+      	</div>
+      <form action="" method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+		{{ form.as_p }} 
+		{% buttons %} <button type="submit" class="btn btn-primary">{% bootstrap_icon "cloud" %} Submit</button>{% endbuttons %}
+      </form>
+    </div>
+  </body>
+</html>
