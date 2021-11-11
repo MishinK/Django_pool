@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MY CV</title>
+	<style type="text/css">
+		body {
+			background: rgb(238, 130, 238);
+			color: white;
+		}
+		h1, h2, h3 {
+			background: rgb(139, 0, 139);
+			text-align: center;
+			padding: 10px;
+		}
+		div {
+			background: rgb(139, 0, 139);
+		}
+	</style>
+</head>
+<body>
+	<h1>{surname} {name}</h1>
+  	<div style="width:100%">
+  	<h2>Info</h2>
+  		<ul type="square"><br>
+  			<li><p>Age:</p> {age}</li>
+  			<li><p>Profession:</p> {profession}</li>
+  		</ul><br>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    background-color: #52B3D9;
+}
+
+h1 {
+    color: blue;
+}
+
+li {
+    display: inline;
+}
+
+iframe {
+    height: 100%;
+    width: 80%;
+}

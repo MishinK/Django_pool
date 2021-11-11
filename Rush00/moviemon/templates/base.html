@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}
+    {% endblock title %}
+	{% include 'style.html' %}
+  </head>
+  <body>
+    <div class="container">
+    	<div class="content">
+	  		{% block content %}
+	  		{% endblock content %}
+		</div>
+    	<a href="{{ request.path }}?key=up" id="btn-up"></a>
+      	<a href="{{ request.path }}?key=left" id="btn-left"></a>
+      	<a href="{{ request.path }}?key=right" id="btn-right"></a>
+      	<a href="{{ request.path }}?key=down" id="btn-down"></a>
+      	<a href="{{ request.path }}?key=a" id="btn-a"></a>
+      	<a href="{{ request.path }}?key=b" id="btn-b"></a>
+      	<a href="{{ request.path }}?key=select" id="btn-select"></a>
+      	<a href="{{ request.path }}?key=start" id="btn-start"></a>
+    </div>
+  </body>
+
+</html>

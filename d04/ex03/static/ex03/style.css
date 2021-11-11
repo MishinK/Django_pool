@@ -1,0 +1,7 @@
+table {
+	border-collapse: collapse;
+}
+td {
+	height: 40px;
+	width: 80px;
+}
